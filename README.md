@@ -291,7 +291,7 @@ Copy your repository URL from GitHub and run:
 
 ```powershell
 # Link your local repo to GitHub (replace with your actual GitHub username)
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/CyberDefense-Hardening-Suite.git
+git remote add origin https://github.com/PratyushKumarSingh0/CyberDefense-Hardening-Suite.git
 
 # Push the main branch
 git push -u origin main
