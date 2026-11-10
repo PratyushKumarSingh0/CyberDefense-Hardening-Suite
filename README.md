@@ -6,7 +6,8 @@
 [![MITRE ATT&CK](https://img.shields.io/badge/Framework-MITRE%20ATT%26CK-red.svg)](https://attack.mitre.org/)
 [![Scripts Count](https://img.shields.io/badge/Defensive%20Scripts-100-success.svg)](#index-of-defensive-scripts)
 
-A production-grade, MITRE ATT&CK-aligned defensive cybersecurity arsenal featuring **100 modular scripts** designed to audit, harden, and protect **Windows endpoints** and **Android mobile devices** against cyber attacks, ransomware, credential theft, and unauthorized access.
+
+ MITRE ATT&CK-aligned defensive cybersecurity arsenal featuring **100 modular scripts** designed to audit, harden, and protect **Windows endpoints** and **Android mobile devices** against cyber attacks, ransomware, credential theft, and unauthorized access.
 
 ---
 
