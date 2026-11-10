@@ -1,0 +1,29 @@
+# Windows & Environment
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# PowerShell & Script Output Logs
+*.log
+*.tmp
+*.bak
+*report.json
+*report.html
+*scorecard.txt
+CyberDefense_Autoruns_Snapshot.json
+
+# Android build & local output
+*.apk
+*.aab
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+captures/
+
+# VS Code & Antigravity
+.vscode/
+.antigravity/
+scratch/

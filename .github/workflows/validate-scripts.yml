@@ -1,0 +1,52 @@
+name: Validate Defensive Scripts
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-powershell:
+    name: Lint & Validate Windows Scripts
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run PSScriptAnalyzer on Windows Scripts
+        shell: pwsh
+        run: |
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+          $scripts = Get-ChildItem -Path ./windows -Filter "*.ps1" -Recurse
+          Write-Host "Discovered $($scripts.Count) Windows defensive scripts."
+          $issues = @()
+          foreach ($s in $scripts) {
+              $results = Invoke-ScriptAnalyzer -Path $s.FullName -Severity Error
+              if ($results) {
+                  $issues += $results
+                  Write-Host "Error in $($s.Name)" -ForegroundColor Red
+              }
+          }
+          if ($issues.Count -gt 0) {
+              throw "$($issues.Count) script errors detected!"
+          } else {
+              Write-Host "All Windows scripts passed syntax and safety validation." -ForegroundColor Green
+          }
+
+  validate-shell:
+    name: Lint & Validate Android Shell Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Lint Android Scripts
+        run: |
+          count=$(find ./android -type f -name "*.sh" | wc -l)
+          echo "Discovered $count Android defensive scripts."
+          find ./android -type f -name "*.sh" -exec shellcheck -e SC2006,SC2181,SC2086 {} +
+          echo "All Android shell scripts passed ShellCheck validation."
